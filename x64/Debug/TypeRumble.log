@@ -1,5 +1,6 @@
 ﻿  main.cpp
 c:\users\luisf\desktop\typerumble\typerumble\typerumble\player.h(27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 c:\users\luisf\desktop\typerumble\typerumble\typerumble\healthbar.h(20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\luisf\desktop\typerumble\typerumble\typerumble\main.cpp(10): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\luisf\desktop\typerumble\typerumble\typerumble\main.cpp(12): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\luisf\desktop\typerumble\typerumble\typerumble\main.cpp(25): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
   TypeRumble.vcxproj -> C:\Users\luisf\Desktop\TypeRumble\TypeRumble\x64\Debug\TypeRumble.exe
