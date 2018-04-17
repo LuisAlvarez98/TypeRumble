@@ -2,7 +2,6 @@
 #include "HealthBar.h"
 #include <fstream>
 
-
 int main()
 {
 	
@@ -11,8 +10,18 @@ int main()
 	HealthBar hb1(Vector2f(0,0));
 	HealthBar hb2(Vector2f(window.getSize().x - 200,0));
 	HealthBar hb3(Vector2f(0, 0), Color::Black);
+	vector<String> words;
+	string oracion;
+	ifstream ifarchivo;
+	ifarchivo.open("sentences.txt");
+
+	while (getline(ifarchivo, oracion)) {
+		words.push_back(oracion);
+		cout << oracion << "\n";
+	}
 
 	Font font;
+
 	if (!font.loadFromFile("Raleway-Regular.ttf")) {
 		cout << "error" << "\n";
 	}
@@ -21,7 +30,10 @@ int main()
 	bool flag = true;
 	word.setFont(font);
 	word.setFillColor(Color::Black);
-	word.setString("Hola soy pipe");
+	
+
+
+	word.setString(words[1]);
 	word.setPosition(Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 	text.setFont(font);
 	text.setFillColor(Color::Red);
@@ -50,6 +62,7 @@ int main()
 						sentence = "";
 						break;
 					}
+				
 				}
 				break;
 			}
@@ -68,8 +81,9 @@ int main()
 		window.draw(word);
 		window.draw(text);
 		window.display();
+	
 	}
 	
-
+	ifarchivo.close();
 	return 0;
 }
