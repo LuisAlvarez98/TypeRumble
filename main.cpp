@@ -5,23 +5,32 @@
 
 vector<String> words;
 
+//Word random function
 string wordRandom() {
 	int index;
 	index = rand() % words.size();
 
 	return words[index];
 }
+
 int main()
 {
-	int p = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "TypeRumble");
 	Player playerOne;
 	HealthBar hb1(Vector2f(0,0));
 	HealthBar hb2(Vector2f(window.getSize().x - 200,0));
 	HealthBar hb3(Vector2f(0, 0), Color::Black);
+
 	string oracion;
+	string sentence;
 	string theWord = "default";
 	ifstream ifarchivo;
+	Font font;
+	Text text;
+	Text word;
+	Text hp;
+
+
 	ifarchivo.open("sentences.txt");
 
 	while (getline(ifarchivo, oracion)) {
@@ -29,29 +38,22 @@ int main()
 		cout << oracion << "\n";
 	}
 
-	Font font;
 
 	if (!font.loadFromFile("Raleway-Regular.ttf")) {
 		cout << "error" << "\n";
 	}
-	Text text;
-	Text word;
-	bool flag = true;
+	
+	//Sentences
 	word.setFont(font);
 	word.setFillColor(Color::Black);
-	
-
-
-	
+	word.setCharacterSize(10);
+	//Typed text
 	text.setFont(font);
 	text.setFillColor(Color::Red);
-	//text.setString("hola");
-
-
-	string sentence;
+	text.setCharacterSize(10);
 	
 
-
+	//Main loop
 	while (window.isOpen())
 	{
 		Event event;
@@ -81,20 +83,23 @@ int main()
 				break;
 			}
 		}
+
+
 		window.clear(Color::White);
 		//playerOne.draw(&window);
 		hb3.draw(&window);
-		
 		hb1.draw(&window);
 		hb2.draw(&window);
 		
-		//hb1.inflictDamage();
-		
 		word.setString(theWord);
+		word.setPosition(Vector2f(0,50));
+
 		text.setString(sentence);
+		text.setPosition(Vector2f(0, 0));
+
+
 		window.draw(text);
 		window.draw(word);
-		word.setPosition(Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 		window.display();
 	
 	}
