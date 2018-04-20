@@ -1,17 +1,26 @@
 #include "Player.h"
 #include "HealthBar.h"
 #include <fstream>
+#include <cstdlib> 
 
+vector<String> words;
+
+string wordRandom() {
+	int index;
+	index = rand() % words.size();
+
+	return words[index];
+}
 int main()
 {
-	
+	int p = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "TypeRumble");
 	Player playerOne;
 	HealthBar hb1(Vector2f(0,0));
 	HealthBar hb2(Vector2f(window.getSize().x - 200,0));
 	HealthBar hb3(Vector2f(0, 0), Color::Black);
-	vector<String> words;
 	string oracion;
+	string theWord = "default";
 	ifstream ifarchivo;
 	ifarchivo.open("sentences.txt");
 
@@ -33,8 +42,7 @@ int main()
 	
 
 
-	word.setString(words[1]);
-	word.setPosition(Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+	
 	text.setFont(font);
 	text.setFillColor(Color::Red);
 	//text.setString("hola");
@@ -54,21 +62,25 @@ int main()
 			case Event::Closed:
 				window.close();
 				break;
-				//typing ext by the user compare caracters
+				//Text handler
 			case Event::TextEntered:
-				if (event.text.unicode < 128) {
+				if (event.text.unicode == 8) {
+					if (sentence.size() > 0) {
+						sentence.erase(sentence.size() - 1, 1);
+					}
+				}
+				else if (event.text.unicode < 127) {
 					sentence += static_cast<char>(event.text.unicode);
 					if (sentence == word.getString()) {
 						sentence = "";
+						theWord = wordRandom();
 						break;
 					}
-				
+
 				}
 				break;
 			}
 		}
-		text.setString(sentence);
-		
 		window.clear(Color::White);
 		//playerOne.draw(&window);
 		hb3.draw(&window);
@@ -77,9 +89,12 @@ int main()
 		hb2.draw(&window);
 		
 		//hb1.inflictDamage();
-
-		window.draw(word);
+		
+		word.setString(theWord);
+		text.setString(sentence);
 		window.draw(text);
+		window.draw(word);
+		word.setPosition(Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 		window.display();
 	
 	}
