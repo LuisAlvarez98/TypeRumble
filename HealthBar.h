@@ -15,19 +15,10 @@ class HealthBar {
 		//Normal hbar
 		HealthBar(Vector2f _pos) {
 			pos = _pos;
-			maxHealth = 100;
 			hp = 200;
-			bar = RectangleShape(Vector2f(200, 20));
+			bar = RectangleShape(Vector2f(hp, 20));
 			bar.setPosition(pos);
 			bar.setFillColor(Color::Green);
-
-		}
-		//Black hbar
-		HealthBar(Vector2f pos, Color color) {
-			this->pos = pos;
-			bar = RectangleShape(Vector2f(200, 20));
-			bar.setPosition(pos);
-			bar.setFillColor(color);
 
 		}
 		void setHp(RectangleShape bar) {

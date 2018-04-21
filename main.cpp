@@ -18,8 +18,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(500, 500), "TypeRumble");
 	Player playerOne;
 	HealthBar hb1(Vector2f(0,0));
-	HealthBar hb2(Vector2f(window.getSize().x - 200,0));
-	HealthBar hb3(Vector2f(0, 0), Color::Black);
+	hb1.setHp(RectangleShape(Vector2f(200,20)));
+
+	
 
 	string oracion;
 	string sentence;
@@ -87,9 +88,7 @@ int main()
 
 		window.clear(Color::White);
 		//playerOne.draw(&window);
-		hb3.draw(&window);
 		hb1.draw(&window);
-		hb2.draw(&window);
 		
 		word.setString(theWord);
 		word.setPosition(Vector2f(0,50));
